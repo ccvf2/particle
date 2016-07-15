@@ -23,10 +23,10 @@ public class TestController {
 	@RequestMapping(value = "/test/test.do", method = RequestMethod.GET)
 	public ModelAndView test() {
 		ModelAndView mav = new ModelAndView();
-		
+		logger.debug("test Mathod start");
 		List<TestDTO> testList = testService.test();
 		mav.addObject("list", testList);
-		mav.setViewName("/test/test");
+		mav.setViewName("/main/main");
 
 		return mav;
 	}
