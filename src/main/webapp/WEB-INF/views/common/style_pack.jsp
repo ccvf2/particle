@@ -19,8 +19,9 @@
 		<link rel="stylesheet" href="/assets/css/style.css">
 	
 		<!-- CSS의 머리글과 바닥 글 -->
-		<!-- <link rel="stylesheet" href="/assets/css/headers/header-default.css">
-		<link rel="stylesheet" href="/assets/css/footers/footer-v1.css"> -->
+		<link rel="stylesheet" href="/assets/css/headers/header-default.css">
+		<link rel="stylesheet" href="/assets/css/footers/footer-v1.css">
+		<link rel="stylesheet" href="/assets/css/footers/footer-default.css">
 	
 		<!-- CSS 구현 플러그인 -->
 		<link rel="stylesheet" href="/assets/plugins/animate.css">
@@ -29,12 +30,15 @@
 	
 		<!-- CSS 테마-->
 		<link rel="stylesheet" href="/assets/css/theme-colors/default.css" id="style_color">
-		<link rel="stylesheet" href="assets/css/theme-skins/dark.css">
+		<link rel="stylesheet" href="/assets/css/theme-skins/dark.css">
 		<!-- CSS 사용자 정의 -->
 		<link rel="stylesheet" href="/assets/css/custom.css">
+		
 	<%-- 공동-end- --%>
 	<%-- --------------------------------------------------------- --%>
 	<%-- 성국-start- --%>
+		<!-- CSS 메인 페이지 Style -->
+		<link rel="stylesheet" href="/assets/css/pages/page_faq1.css">
 	
 	
 	<%-- 성국-end- --%>
