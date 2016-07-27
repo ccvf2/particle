@@ -32,6 +32,14 @@
 		<link rel="stylesheet" href="assets/css/theme-skins/dark.css">
 		<!-- CSS 사용자 정의 -->
 		<link rel="stylesheet" href="/assets/css/custom.css">
+		
+		<!-- CSS Header and Footer -->
+		<link rel="stylesheet" href="/assets/css/headers/header-default.css">
+		<link rel="stylesheet" href="/assets/css/footers/footer-default.css">
+
+		<!-- CSS 메인 페이지 Style -->
+		<link rel="stylesheet" href="/assets/css/pages/page_faq1.css">
+		
 	<%-- 공동-end- --%>
 	<%-- --------------------------------------------------------- --%>
 	<%-- 성국-start- --%>
