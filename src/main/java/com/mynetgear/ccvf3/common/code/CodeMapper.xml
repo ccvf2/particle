@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mynetgear.ccvf3.common.code.CodeMapper">
+	
+	<!-- 슬라이드 이미지의 백그라운드 이미지 셋팅값 -->
+	<select id="get_test" resultType="com.mynetgear.ccvf3.common.code.CodeDTO">
+		select * from test
+	</select>
+	
+</mapper>
