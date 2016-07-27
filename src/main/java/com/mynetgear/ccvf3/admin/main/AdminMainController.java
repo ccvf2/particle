@@ -15,14 +15,11 @@ import com.mynetgear.ccvf3.test.TestService;
 public class AdminMainController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@Autowired
-	private TestService testService;
-
 	
 	@RequestMapping(value = "/admin/main.do", method = RequestMethod.GET)
 	public ModelAndView adminMainView() {
 		ModelAndView mav = new ModelAndView();
-		//logger.debug("test Mathod start");
+		logger.debug("adminMainView Method start");
 		//List<TestDTO> testList = testService.test();
 		//mav.addObject("list", testList);
 		mav.setViewName("/admin/main");
