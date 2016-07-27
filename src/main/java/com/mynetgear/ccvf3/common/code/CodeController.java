@@ -21,7 +21,9 @@ public class CodeController {
 	@RequestMapping(value = "/admin/code.do", method = RequestMethod.GET)
 	public ModelAndView adminCodeModifyView() {
 		ModelAndView mav = new ModelAndView();
-		logger.debug("adminCodeModifyView Mathod start");
+		logger.debug("adminCodeModifyView Method start");
+		
+		mav.addObject("commonCodeList",CodeService.getCommonCodeList());
 		mav.setViewName("/admin/code/code");
 
 		return mav;

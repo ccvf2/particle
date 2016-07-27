@@ -99,15 +99,17 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${commonCodeList}" var="codeList">
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td><c:out value="${codeList.code_seq}"/></td>
+									<td><c:out value="${codeList.code}"/></td>
+									<td><c:out value="${codeList.code_name}"/></td>
+									<td><c:out value="${codeList.code_group}"/></td>
+									<td><c:out value="${codeList.code_group_name}"/></td>
+									<td><c:out value="${codeList.code_value}"/></td>
+									<td><c:out value="${codeList.code_sort}"/></td>
 								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
