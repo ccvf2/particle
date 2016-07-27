@@ -10,10 +10,14 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 
-		<!-- 곽성국 서버 -->
-		<property name="url" value="jdbc:oracle:thin:@ksg9155.asuscomm.com:1521:xe" />
+		<!-- 배성욱 서버 -->
+		<property name="url" value="jdbc:oracle:thin:@ccvf3.mynetgear.com:54321:ew" />
 		<property name="username" value="particle" />
 		<property name="password" value="Kosta108!" />
+		<!-- 곽성국 서버 -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@ksg9155.asuscomm.com:1521:xe" />
+		<property name="username" value="particle" />
+		<property name="password" value="Kosta108!" /> -->
 	</bean>
 	
 	<!-- 트랜잭션 처리 시 필요한 Object Injection (DI) -->
