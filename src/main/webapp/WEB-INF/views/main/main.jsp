@@ -26,7 +26,7 @@
 		<div class="container content faq-page">
 			<div class="row equal-height-columns margin-bottom-40">
 				<div class="col-md-5 col-sm-4">
-					<div class="panel panel-green">
+					<div class="panel panel-blue">
 						<div class="panel-heading">
 							<h3 class="panel-title"><i class="fa fa-tasks"></i> 전국구 미세먼지</h3>
 						</div>
@@ -42,7 +42,7 @@
 				
 				<!-- 측정소의 시간대별 미세먼지가 표로 나오는 곳 -->
 				<div class="col-md-7 col-sm-8">
-					<div class="panel panel-green margin-bottom-40">
+					<div class="panel panel-blue margin-bottom-40">
 						<div class="panel-heading">
 							<h3 class="panel-title"><i class="fa fa-gear"></i>종로구</h3>
 						</div>
@@ -176,7 +176,7 @@
 				
 				<!-- 측정소별 현재 미세먼지 아이콘과 뉴스가 나올 row -->
 				<div class="col-md-4 col-sm-4">
-					<div class="panel panel-green">
+					<div class="panel panel-blue">
 						<div class="panel-heading">
 							<h3 class="panel-title"><i class="fa fa-tasks"></i> 오늘의 미세먼지</h3>
 						</div>
@@ -209,7 +209,7 @@
 				</div>
 				
 				<div class="col-md-8 col-sm-8">
-					<div class="panel panel-green">
+					<div class="panel panel-blue">
 						<div class="panel-heading">
 							<h3 class="panel-title"><i class="fa fa-tasks"></i> 미세먼지 뉴스</h3>
 						</div>
