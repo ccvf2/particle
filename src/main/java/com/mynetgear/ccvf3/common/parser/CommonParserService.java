@@ -6,14 +6,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.*;
+
+import com.mynetgear.ccvf3.HomeController;
+import com.mynetgear.ccvf3.common.util.Constant;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 @Component
 public class CommonParserService implements CommonParserServiceImp{
-
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	private Document parseXML(InputStream stream) throws Exception{
 		DocumentBuilderFactory objDocumentBuilderFactory = null;
 		DocumentBuilder objDocumentBuilder = null;
@@ -44,19 +52,20 @@ public class CommonParserService implements CommonParserServiceImp{
 			url = new URL(requestURL);
 			try {
 				connection = url.openConnection();
+				logger.debug(Constant.LOG_ID1+connection.toString());
 				try {
 					doc = parseXML(connection.getInputStream());
 				} catch (Exception e) {
 					e.printStackTrace();
-					System.out.println("XML 문서 객체 생성 실패");
+					logger.debug(Constant.LOG_ID1+"XML 문서 객체 생성 실패");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
-				System.out.println("URL 연결 실패");
+				logger.debug(Constant.LOG_ID1+"URL 연결 실패");
 			}
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
-			System.out.println("URL 요청 실패");
+			logger.debug(Constant.LOG_ID1+"URL 요청 실패");
 		}
 		return doc;
 	}
@@ -73,16 +82,45 @@ public class CommonParserService implements CommonParserServiceImp{
 		NodeList docNodeList=null;
 		if (listCount != 0 && listCount != -1) {
 			docNodeList = doc.getElementsByTagName(itme_tag);
+		}else{
+			logger.debug(Constant.LOG_ID1+" "+itme_tag+"가 존재하지 않거나, "+itme_tag+"가 잘못되었습니다.");
 		}
 		return docNodeList;
 	}
 	
 	
-	
-	
-	
-	public void saveFileProcess() {
+	/**@date 2016.07.28
+	 * @author 배성욱
+	 * @deprecated XML Document 객체로 Strig
+	 * @param requestURL
+	 * @return NodeList[(Object)org.w3c.dom]
+	 */
+	public String makeXMLDocumentToSting(Document doc) {
+		NodeList descNodes = doc.getElementsByTagName("item");
+		StringBuffer content=new StringBuffer();
 		
+		for(int i=0; i<descNodes.getLength();i++){
+			content.append("    ");
+			content.append("<br />");
+			content.append("<item>");
+			for(Node node = descNodes.item(i).getFirstChild(); node!=null; node=node.getNextSibling()){
+				if(StringUtils.equals(node.getNodeName(), "#text")==false){
+			//첫번째 자식을 시작으로 마지막까지 다음 형제를 실행
+				content.append("    ");
+				content.append("<");
+				content.append(node.getNodeName());
+				content.append(">");
+				content.append(node.getTextContent());
+				content.append("</");
+				content.append(node.getNodeName());
+				content.append(">");
+				}
+			}
+			content.append("</item>");
+		}
+		return content.toString();
 	}
+	
+	
 	
 }
