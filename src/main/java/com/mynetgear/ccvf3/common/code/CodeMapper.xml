@@ -26,6 +26,30 @@
 			, CODE_SORT as code_sort
 		FROM
 			TBL_CODE
+		ORDER BY code_group, code_sort
 	</select>
 	
+	<!-- 새로운 코드를 추가 -->
+	<insert id="set_Common_Code" parameterType="com.mynetgear.ccvf3.common.code.CodeDTO">
+		INSERT INTO TBL_CODE 
+			VALUES(seq_code.nextval 
+				, #{code} , #{code_name} , #{code_group}
+				, #{code_group_name}, #{code_value}, #{code_sort})  
+	</insert>
+	
+	<!-- 기존 코드를 업데이트 -->
+	<update id="update_Common_Code" parameterType="com.mynetgear.ccvf3.common.code.CodeDTO">
+		UPDATE TBL_CODE
+		SET CODE = #{code}, CODE_NAME = #{code_name}, CODE_GROUP=#{code_group}
+					, CODE_GROUP_NAME=#{code_group_name}, CODE_VALUE=#{code_value}
+					, CODE_SORT=#{code_sort}
+		WHERE CODE_SEQ=#{code_seq}
+	</update>
+	
+	<!-- 기존 코드 삭제 -->
+	<delete id="delete_Common_Code" parameterType="com.mynetgear.ccvf3.common.code.CodeDTO">
+		DELETE
+		FROM tbl_code 
+		WHERE code_seq = #{code_seq}
+	</delete>
 </mapper>

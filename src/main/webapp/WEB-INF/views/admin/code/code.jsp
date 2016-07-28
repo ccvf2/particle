@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head>	
 	<title>administrator_Main</title>
 
 	<!-- Meta -->
@@ -47,10 +48,11 @@
 						<table>
 						<form:form commandName="commonCode" id="commonCodeForm">
 							<tr>
+								<form:hidden path="code_CRUD" id="code_CRUD"/>
 								<th>고유코드</th>
 								<td>
 									<form:input path="code" id="code" maxlength="5" cssClass="form-control"/>
-									<form:hidden path="code_seq" id="code" maxlength="5" cssClass="form-control"/>
+									<form:hidden path="code_seq" id="code_seq" maxlength="5" cssClass="form-control"/>
 									<!-- <input type="text" name="code" maxlength="5" id="code" class="form-control"/> -->
 								</td>
 								<th>코드명</th>
@@ -82,8 +84,8 @@
 						</form:form>
 						</table>
 						<br />
-						<input type="button"  class="btn btn-primary" value="수정" onclick="updateCcodeFormSubmin()">
-						<input type="button"  class="btn btn-primary" value="삭제" onclick="deleteCodeFormSubmin()">
+						<input type="button"  class="btn btn-warning" value="수정" onclick="updateCcodeFormSubmin()">
+						<input type="button"  class="btn btn-danger" value="삭제" onclick="deleteCodeFormSubmin()">
 						<input type="button"  class="btn btn-primary" value="등록" onclick="insertCcodeFormSubmin()">
 					</div>
 					</div>
@@ -94,7 +96,7 @@
 			<div class="row">
 				<div class="panel panel-grey margin-bottom-40">
 					<div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-globe"></i> 코드 목록</h3>
+						<h3 class="panel-title"><i class="fa fa-list"></i> 코드 목록 - ${fn:length(commonCodeList)}개</h3>
 					</div>
 					<div class="panel-body">
 						<table class="table table-bordered">
@@ -113,7 +115,11 @@
 							<c:forEach items="${commonCodeList}" var="codeList">
 								<tr>
 									<td><c:out value="${codeList.code_seq}"/></td>
-									<td><c:out value="${codeList.code}"/></td>
+									<td>
+										<a href="javascript:codeSelector('${codeList.code_seq}','${codeList.code}','${codeList.code_name}','${codeList.code_group}','${codeList.code_group_name}','${codeList.code_value}','${codeList.code_sort}')">
+											<c:out value="${codeList.code}"/>
+										</a>
+									</td>
 									<td><c:out value="${codeList.code_name}"/></td>
 									<td><c:out value="${codeList.code_group}"/></td>
 									<td><c:out value="${codeList.code_group_name}"/></td>
@@ -155,6 +161,45 @@
 			StyleSwitcher.initStyleSwitcher();
 			ProgressBar.initProgressBarHorizontal();
 		});
+		
+		//코드목록에서 코드이름을 누르면 폼에 값들이 채워지는 함수
+		function codeSelector(code_seq, code, code_name, code_group, code_group_name, code_value, code_sort) {
+			$(function() {
+				$("#code_seq").val(code_seq);
+				$("#code").val(code);
+				$("#code_name").val(code_name);
+				$("#code_group").val(code_group);
+				$("#code_group_name").val(code_group_name);
+				$("#code_value").val(code_value);
+				$("#code_sort").val(code_sort);
+			});
+		}
+		
+		// 공통코드 값을 수정
+		function updateCcodeFormSubmin() {
+			var form = document.getElementById("commonCodeForm");
+			$("#code_CRUD").val("U");
+			form.action="/admin/code.do"; 
+			form.submit();
+		}
+		
+		// 공통코드 값을 삭제
+		function deleteCodeFormSubmin() {
+			var form = document.getElementById("commonCodeForm");
+			$("#code_CRUD").val("D");
+			
+			form.action="/admin/code.do"; 
+			form.submit();
+		}
+		
+		// 공통코드 값을 등록
+		function insertCcodeFormSubmin() {
+			var form = document.getElementById("commonCodeForm");
+			$("#code_CRUD").val("C");
+			
+			form.action="/admin/code.do"; 
+			form.submit();
+		}
 	</script>
 </body>
 </html>

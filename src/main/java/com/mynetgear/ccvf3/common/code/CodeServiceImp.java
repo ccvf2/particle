@@ -5,5 +5,6 @@ import java.util.List;
 public interface CodeServiceImp {
 
 	List<CodeDTO> getCommonCodeList();
-
+	
+	int callCodeSetting(CodeDTO codeDTO);
 }

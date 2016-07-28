@@ -3,7 +3,7 @@ package com.mynetgear.ccvf3.common.code;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CodeDTO{
+public class CodeDTO extends CodeDTOExt {
 	
 	
 	/** 공통 고유코드: 고유코드시퀀스 */
