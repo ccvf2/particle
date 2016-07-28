@@ -1,5 +1,12 @@
 package com.mynetgear.ccvf3.common.parser;
 
-public class CommonParserController {
+import org.springframework.beans.factory.annotation.Autowired;
 
+public class CommonParserController {
+	@Autowired
+	CommonParserService parserService;
+
+	public void name() {
+
+	}
 }
