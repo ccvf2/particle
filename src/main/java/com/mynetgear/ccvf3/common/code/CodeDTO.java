@@ -1,7 +1,11 @@
 package com.mynetgear.ccvf3.common.code;
 
-public class CodeDTO {
+import org.springframework.stereotype.Component;
 
+@Component
+public class CodeDTO{
+	
+	
 	/** 공통 고유코드: 고유코드시퀀스 */
 	private int code_seq=0;
 	/** 공통 고유코드: 고유코드 */
@@ -22,6 +26,7 @@ public class CodeDTO {
 	}
 	public void setCode_seq(int code_seq) {
 		this.code_seq = code_seq;
+		
 	}
 	public String getCode() {
 		return code;
@@ -59,6 +64,5 @@ public class CodeDTO {
 	public void setCode_sort(int code_sort) {
 		this.code_sort = code_sort;
 	}
-	
 	
 }

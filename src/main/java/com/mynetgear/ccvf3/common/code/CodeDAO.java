@@ -10,6 +10,7 @@ public class CodeDAO implements CodeDAOImp {
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
 	
+	@Override
 	public List<CodeDTO> getCommonCodeList() {
 		return sessionTemplate.selectList("get_Common_Code_list");
 	}

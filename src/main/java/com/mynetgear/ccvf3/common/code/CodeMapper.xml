@@ -3,17 +3,29 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mynetgear.ccvf3.common.code.CodeMapper">
-	
+<!-- 	 property="변수명" column="디비컬럼명" -->
+ <resultMap type="com.mynetgear.ccvf3.common.code.CodeDTO" id="codeMap">
+	<result property="code_seq" column="code_seq" />
+	<result property="code" column="code" />
+	<result property="code_name" column="code_name" />
+	<result property="code_group" column="code_group" />
+	<result property="code_group_name" column="code_group_name" />
+	<result property="code_value" column="code_value" />
+	<result property="code_sort" column="code_sort" />
+	<!-- <result property="totalCount" column="totalCount" /> -->
+</resultMap>
 	<!-- 슬라이드 이미지의 백그라운드 이미지 셋팅값 -->
+<!-- 	<select id="get_Common_Code_list" resultType="codeMap"> -->
 	<select id="get_Common_Code_list" resultType="com.mynetgear.ccvf3.common.code.CodeDTO">
 		SELECT
-			CODE_SEQ
-			, CODE
-			, CODE_NAME
-			, CODE_GROUP
-			, CODE_GROUP_NAME
-			, CODE_VALUE
-			, CODE_SORT
+			CODE_SEQ as code_seq
+			, CODE as code
+			, CODE_NAME as code_name
+			, CODE_GROUP as code_group
+			, CODE_GROUP_NAME as code_group_name
+			, CODE_VALUE as code_value
+			, CODE_SORT as code_sort
+			,(select count(1) from tbl_code) as totalCount
 		FROM
 			TBL_CODE
 	</select>

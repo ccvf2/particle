@@ -1,6 +1,5 @@
 package com.mynetgear.ccvf3.common.code;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,8 +18,11 @@ public class CodeService implements CodeServiceImp {
 	@Override
 	public List<CodeDTO> getCommonCodeList() {
 		logger.debug("getCommonCodeList.DAO Method start");
-		List<CodeDTO> codeList = new ArrayList<CodeDTO>();
-		codeList = codeDAO.getCommonCodeList();
+		
+		//CodeDTO a= new CodeDTO();
+		
+		
+		List<CodeDTO> codeList = codeDAO.getCommonCodeList();
 		
 		return codeList;
 	}

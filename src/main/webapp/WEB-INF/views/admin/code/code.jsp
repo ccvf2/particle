@@ -101,7 +101,7 @@
 							<tbody>
 							<c:forEach items="${commonCodeList}" var="codeList">
 								<tr>
-									<td><c:out value="${codeList.code_seq}"/></td>
+									<td><c:out value="${codeList.code_seq}"/>(${codeList.totalCount})</td>
 									<td><c:out value="${codeList.code}"/></td>
 									<td><c:out value="${codeList.code_name}"/></td>
 									<td><c:out value="${codeList.code_group}"/></td>

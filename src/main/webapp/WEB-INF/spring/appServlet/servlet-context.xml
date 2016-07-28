@@ -28,5 +28,13 @@
 	<context:component-scan base-package="com.mynetgear.ccvf3" />
 	
 	
-	
+		<!-- 로그인 세션 체크를 위한 인터셉터 설정  -->
+<!-- 	<beans:bean id="authorityInterceptor" class="com.mynetgear.ccvf3.common.util.AuthorityInterceptor.java"></beans:bean>
+		<interceptors>
+			<interceptor> 
+				<mapping path="/**/*.do"/>
+				<mapping path="/**/*.ajax"/>
+			<beans:ref  bean="authorityInterceptor"/> 
+			</interceptor>
+		</interceptors> -->
 </beans:beans>
