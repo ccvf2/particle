@@ -12,7 +12,6 @@
 	<result property="code_group_name" column="code_group_name" />
 	<result property="code_value" column="code_value" />
 	<result property="code_sort" column="code_sort" />
-	<!-- <result property="totalCount" column="totalCount" /> -->
 </resultMap>
 	<!-- 슬라이드 이미지의 백그라운드 이미지 셋팅값 -->
 <!-- 	<select id="get_Common_Code_list" resultType="codeMap"> -->
@@ -25,7 +24,6 @@
 			, CODE_GROUP_NAME as code_group_name
 			, CODE_VALUE as code_value
 			, CODE_SORT as code_sort
-			,(select count(1) from tbl_code) as totalCount
 		FROM
 			TBL_CODE
 	</select>

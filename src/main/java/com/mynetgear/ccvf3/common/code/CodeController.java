@@ -23,7 +23,9 @@ public class CodeController {
 		ModelAndView mav = new ModelAndView();
 		logger.debug("adminCodeModifyView Method start");
 		
+		CodeDTO code= new CodeDTO();
 		mav.addObject("commonCodeList",CodeService.getCommonCodeList());
+		mav.addObject("commonCode",code);
 		mav.setViewName("/admin/code/code");
 
 		return mav;

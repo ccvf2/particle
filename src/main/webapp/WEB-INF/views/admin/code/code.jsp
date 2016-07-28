@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,33 +43,43 @@
 					</div>
 					<div class="panel-body">
 					<div class="text-right">
+					
 						<table>
+						<form:form commandName="commonCode" id="commonCodeForm">
 							<tr>
 								<th>고유코드</th>
 								<td>
-									<input type="text" name="code" maxlength="5" id="code" class="form-control"/>
+									<form:input path="code" id="code" maxlength="5" cssClass="form-control"/>
+									<form:hidden path="code_seq" id="code" maxlength="5" cssClass="form-control"/>
+									<!-- <input type="text" name="code" maxlength="5" id="code" class="form-control"/> -->
 								</td>
 								<th>코드명</th>
 								<td>
-									<input type="text" name="code_name" maxlength="30" id="code_name" class="form-control"/>
+									<form:input path="code_name" id="code_name" maxlength="30" cssClass="form-control"/>
+									<!-- <input type="text" name="code_name" maxlength="30" id="code_name" class="form-control"/> -->
 								</td>
 								<th>코드그룹</th>
 								<td>
-									<input type="text" name="code_group" maxlength="10" id="code_group" class="form-control"/>
+									<form:input path="code_group" id="code_group" maxlength="10" cssClass="form-control"/>
+									<!-- <input type="text" name="code_group" maxlength="10" id="code_group" class="form-control"/> -->
 								</td>
 								<th>코드그룹명</th>
 								<td>
-									<input type="text" name="code_group_name" maxlength="30" id="code_group_name" class="form-control"/>
+									<form:input path="code_group_name" id="code_group_name" maxlength="30" cssClass="form-control"/>
+									<!-- <input type="text" name="code_group_name" maxlength="30" id="code_group_name" class="form-control"/> -->
 								</td>
 								<th>코드밸류</th>
 								<td>
-									<input type="text" name="code_value" maxlength="30" id="code_value" class="form-control"/>
+									<form:input path="code_value" id="code_value" maxlength="30" cssClass="form-control"/>
+									<!-- <input type="text" name="code_value" maxlength="30" id="code_value" class="form-control"/> -->
 								</td>
 								<th>코드정렬</th>
 								<td>
-									<input type="text" name="code_value" maxlength="30" id="code_value" class="form-control"/>
+									<form:input path="code_sort" id="code_sort" maxlength="3" cssClass="form-control"/>
+									<!-- <input type="text" name="code_value" maxlength="30" id="code_value" class="form-control"/> -->
 								</td>
 							</tr>
+						</form:form>
 						</table>
 						<br />
 						<input type="button"  class="btn btn-primary" value="수정" onclick="updateCcodeFormSubmin()">
@@ -101,7 +112,7 @@
 							<tbody>
 							<c:forEach items="${commonCodeList}" var="codeList">
 								<tr>
-									<td><c:out value="${codeList.code_seq}"/>(${codeList.totalCount})</td>
+									<td><c:out value="${codeList.code_seq}"/></td>
 									<td><c:out value="${codeList.code}"/></td>
 									<td><c:out value="${codeList.code_name}"/></td>
 									<td><c:out value="${codeList.code_group}"/></td>
