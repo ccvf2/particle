@@ -5,6 +5,12 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -14,6 +20,7 @@ import org.w3c.dom.*;
 
 import com.mynetgear.ccvf3.HomeController;
 import com.mynetgear.ccvf3.common.util.Constant;
+import com.mynetgear.ccvf3.common.util.MapKeyCode;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -77,7 +84,7 @@ public class CommonParserService implements CommonParserServiceImp{
 	 * @param requestURL
 	 * @return NodeList[(Object)org.w3c.dom]
 	 */
-	public NodeList getItemParser(Document doc, String itme_tag) {
+	/*public NodeList getItemParser(Document doc, String itme_tag) {
 		int listCount=doc.getElementsByTagName(itme_tag).getLength();
 		NodeList docNodeList=null;
 		if (listCount != 0 && listCount != -1) {
@@ -86,7 +93,51 @@ public class CommonParserService implements CommonParserServiceImp{
 			logger.debug(Constant.LOG_ID1+" "+itme_tag+"가 존재하지 않거나, "+itme_tag+"가 잘못되었습니다.");
 		}
 		return docNodeList;
+	}*/
+	
+	/**@date 2016.07.31
+	 * @author 배성욱
+	 * @deprecated XML Document
+	 * @param requestURL
+	 * @return List<HashMap<String, String>>
+	 * @see List<HashMap<String, String>> 파싱된 내용이 담겨있는 맵 목록, 해쉬맵<XMLTag, XMLContents>
+	 */
+	public List<HashMap<String, String>> requestXMLParse(Document doc, String parentTag, Set<String> parseTag) {
+		//return랑 List객체를 생성함
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		
+		NodeList docNodes = doc.getElementsByTagName(parentTag);
+		Iterator<String> itKey=parseTag.iterator();
+		//document에서 item을 검색함.
+		for(int i=0; i<docNodes.getLength();i++){
+			HashMap<String, String> map = new HashMap<String, String>();
+			while (itKey.hasNext()) {
+				String kkey=itKey.next();
+				for(Node node = docNodes.item(i).getFirstChild(); node!=null; node=node.getNextSibling()){
+					if(StringUtils.equals(node.getNodeName(), kkey)){
+						try {
+							map.put(MapKeyCode .KEY_CODE_INDEX, i+"");
+							map.put(kkey, node.getTextContent());
+							list.add(map);
+						} catch (Exception e) {
+							logger.debug(Constant.LOG_ID1+"내용을 찾을 수 없습니다.");
+						}
+					}
+				}
+			}
+			//item에서 첫번째 자식을 시작으로 마지막까지 다음 형제를 실행
+		}
+		
+		return list;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/**@date 2016.07.28
@@ -121,6 +172,13 @@ public class CommonParserService implements CommonParserServiceImp{
 		return content.toString();
 	}
 	
-	
+	/*public Object makeXMLDocumentToSting(String requestURL, Object returnObject, String 단건다건선택자) {
+		*//**
+		 * 1.단건 파싱 후 오브젝트를 돌려준다.
+		 * 2.다건 파싱 후 콜렌션 오브젝트를 돌려준다.
+		 * 3.단건인지 다건인지 선택하는 선택자를 받는다. 
+		 * *//*
+	}
+	*/
 	
 }

@@ -7,7 +7,6 @@ public class Constant {
 	public static final String LOG_ID2 = "※userInfo:  ";
 	/** 개발자 로그 : Aspect Error */
 	public static final String LOG_ID3 = "※userError:  ";
-
 	/** 문자 셋트 설정 : UTF-8 */
 	public static final String CHARACTER_SET_UTF8 = "UTF-8";
 
@@ -67,5 +66,4 @@ public class Constant {
 	public static final String CALLBACK_URL = "callback_url";
 	/**이동할페이지: 로그인전 시도했던 페이지로 이동 시 파라메터*/
 	public static final String CALLBACK_PARAM = "callback_param";
-	
 }
