@@ -55,6 +55,10 @@ public class CommonParserController {
 		parseSET.add("so2Value");
 		parseSET.add("coValue");
 		
+		
+		
+		
+		
 		List<HashMap<String, String>> list =parserService.requestXMLParse(doc, "item", parseSET);
 		mav.addObject("paerseList",list);
 		mav.setViewName("/test/parse");

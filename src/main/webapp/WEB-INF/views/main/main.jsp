@@ -19,7 +19,7 @@
 <body>
 	<div class="wrapper">
 		<!--=== Header ===-->
-		<c:import url="/WEB-INF/views/common/header.jsp"/>
+		<c:import url="/common/header.do"/>
 		<!--=== End Header ===-->
 
 		<!--=== FAQ Page ===-->

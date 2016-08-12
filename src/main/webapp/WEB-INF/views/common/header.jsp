@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 		<div class="header">
 			<div class="container">
 				<!-- Logo -->
-				<a class="logo" href="index.html">
+				<a class="logo" href="/main/main.do">
 					<img src="/assets/img/logo1-default.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
@@ -26,6 +27,7 @@
 						<li><a href="page_faq.html">Help</a></li>
 						<li class="topbar-devider"></li>
 						<li><a href="page_login.html">Login</a></li>
+						<li><a href="#"><c:out value="${sessionScope.state}"/></a></li>
 					</ul>
 				</div>
 				<!-- End Topbar -->
