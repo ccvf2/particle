@@ -11,4 +11,6 @@ public interface CodeDAOImp {
 	int setCommonCode(CodeDTO codeDTO);
 	
 	int deleteCommonCode(CodeDTO codeDTO);
+	
+	List<CodeDTO> getListCodeInfo(CodeDTO codeDTO);
 }

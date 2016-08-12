@@ -40,4 +40,10 @@ public class CodeDAO implements CodeDAOImp {
 		return sessionTemplate.delete("delete_Common_Code", codeDTO);
 	}
 
+	@Override
+	public List<CodeDTO> getListCodeInfo(CodeDTO codeDTO) {
+		logger.debug("getListCodeInfo method start");
+		return sessionTemplate.selectList("get_Common_code_info", codeDTO);
+	}
+
 }

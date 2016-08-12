@@ -47,4 +47,18 @@ public class CodeService implements CodeServiceImp {
 		
 		return result;
 	}
+
+	/**
+	 * 코드 그룹 가져오기용
+	 * */
+	@Override
+	public List<CodeDTO> getListCodeGroup(String codeGroupName) {
+		codeGroupName = StringUtils.deleteWhitespace(codeGroupName);
+		
+		CodeDTO codeDTO = new CodeDTO();
+		codeDTO.setSearch_code_group(codeGroupName);
+		
+		List<CodeDTO> list = codeDAO.getListCodeInfo(codeDTO);
+		return list;
+	}
 }

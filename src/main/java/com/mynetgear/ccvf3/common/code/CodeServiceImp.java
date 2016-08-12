@@ -7,4 +7,6 @@ public interface CodeServiceImp {
 	List<CodeDTO> getCommonCodeList();
 	
 	int callCodeSetting(CodeDTO codeDTO);
+	
+	List<CodeDTO> getListCodeGroup(String codeGroupName);
 }

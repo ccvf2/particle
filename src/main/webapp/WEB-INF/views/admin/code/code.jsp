@@ -44,7 +44,6 @@
 					</div>
 					<div class="panel-body">
 					<div class="text-right">
-					
 						<table>
 						<form:form commandName="commonCode" id="commonCodeForm">
 							<tr>
@@ -83,10 +82,10 @@
 							</tr>
 						</form:form>
 						</table>
-						<br />
-						<input type="button"  class="btn btn-warning" value="수정" onclick="updateCcodeFormSubmin()">
-						<input type="button"  class="btn btn-danger" value="삭제" onclick="deleteCodeFormSubmin()">
-						<input type="button"  class="btn btn-primary" value="등록" onclick="insertCcodeFormSubmin()">
+						<br/>
+						<input type="button" class="btn btn-warning" value="수정" onclick="updateCcodeFormSubmin()">
+						<input type="button" class="btn btn-danger" value="삭제" onclick="deleteCodeFormSubmin()">
+						<input type="button" class="btn btn-primary" value="등록" onclick="insertCcodeFormSubmin()">
 					</div>
 					</div>
 				</div>
