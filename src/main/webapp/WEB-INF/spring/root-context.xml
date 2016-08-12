@@ -37,6 +37,7 @@
 			<list>
 				<value>classpath:/com/mynetgear/ccvf3/test/TestMapper.xml</value>
 				<value>classpath:/com/mynetgear/ccvf3/common/code/CodeMapper.xml</value>
+				<value>classpath:/com/mynetgear/ccvf3/admin/logger/AdminLoggerMapper.xml</value>
 			</list>
 		</property>
 	</bean>

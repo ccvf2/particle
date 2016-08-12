@@ -39,7 +39,10 @@
 	<%-- 성국-start- --%>
 		<!-- CSS 메인 페이지 Style -->
 		<link rel="stylesheet" href="/assets/css/pages/page_faq1.css">
-	
+		<!-- adminLogger row margin -->
+		<style type="text/css">
+			.top-buffer {margin-top:20px;}
+		</style>	
 	
 	<%-- 성국-end- --%>
 	<%-- --------------------------------------------------------- --%>

@@ -133,6 +133,9 @@
 								<ul class="dropdown-menu">
 									<li><a href="/admin/code.do">공통코드 관리</a></li>
 								</ul>
+								<ul class="dropdown-menu">
+									<li><a href="/admin/logger.do">관리자 로그</a></li>
+								</ul>
 							</li>
 							<!-- End Blog -->
 
