@@ -19,7 +19,7 @@
 <body>
 	<div class="wrapper">
 		<!--=== Header ===-->
-		<c:import url="/common/header.do"/>
+		<c:import url="/WEB-INF/views/common/header.jsp"/>
 		<!--=== End Header ===-->
 
 		<!--=== FAQ Page ===-->
@@ -33,7 +33,7 @@
 						<div class="panel-body">
 							<!-- 전국별 미세먼지 현황이 지도로 나와야 할 부분 -->
 								<!-- Google Map -->
-							<div id="map" class="map"></div>
+							<div id="map12" class="map12"></div>
 							<!-- End Google Map -->
 							<!-- 전국별 미세먼지 현황이 지도로 나와야 할 부분 끝-->
 						</div>
@@ -236,7 +236,7 @@
 			App.init();
 			App.initCounter();
 			App.initParallaxBg();
-			ContactPage.initMap();
+			//ContactPage.initMap();
 			StyleSwitcher.initStyleSwitcher();
 		});
 	</script>

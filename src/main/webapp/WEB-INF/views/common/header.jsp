@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 		<div class="header">
 			<div class="container">
 				<!-- Logo -->
@@ -10,25 +9,12 @@
 
 				<!-- Topbar -->
 				<div class="topbar">
-					<ul class="loginbar pull-right">
-						<li class="hoverSelector">
-							<i class="fa fa-globe"></i>
-							<a>Languages</a>
-							<ul class="languages hoverSelectorBlock">
-								<li class="active">
-									<a href="#">English <i class="fa fa-check"></i></a>
-								</li>
-								<li><a href="#">Spanish</a></li>
-								<li><a href="#">Russian</a></li>
-								<li><a href="#">German</a></li>
-							</ul>
-						</li>
-						<li class="topbar-devider"></li>
-						<li><a href="page_faq.html">Help</a></li>
-						<li class="topbar-devider"></li>
-						<li><a href="page_login.html">Login</a></li>
-						<li><a href="#"><c:out value="${sessionScope.state}"/></a></li>
-					</ul>
+					<div class="loginbar pull-right">
+						<ul>
+							<li><a href="/login/login.do">login</a></li>
+						</ul>
+						<!-- <div id="naver_id_login"></div> -->
+					</div>
 				</div>
 				<!-- End Topbar -->
 

@@ -90,7 +90,7 @@
 						</div>
 						<div class="col-md-6">
 							<a href="index.html">
-								<img class="pull-right" id="logo-footer" src="assets/img/logo-light.png" alt="">
+								<img class="pull-right" id="logo-footer" src="/assets/img/logo3-light.png" alt="">
 							</a>
 						</div>
 					</div>
@@ -98,7 +98,6 @@
 			</div><!--/copyright-->
 		</div>
 		<!--=== End Footer Version 2 ===-->
-	</div><!--/End Wrapepr-->
 
 	<!--=== Style Switcher ===-->
 	<i class="style-switcher-btn fa fa-cogs hidden-xs"></i>

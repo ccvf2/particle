@@ -19,31 +19,26 @@ import com.mynetgear.ccvf3.HomeController;
 @Controller
 public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-		
-	@RequestMapping(value = "/common/header.do", method = RequestMethod.GET)
-	public ModelAndView userCommonHeader(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("/common/header");
-		
-		//if (StringUtils.isEmpty(request.getSession().getAttribute("state").toString())) {
-		if (request.getSession().getAttribute("state")==null) {
-			//네이버로그인용
-			SecureRandom random = new SecureRandom();
-			BigInteger intger= new BigInteger(130, random);
-			// 상태 토큰으로 사용할 랜덤 문자열 생성
-			String state = intger.toString(32);
-			// 세션 또는 별도의 저장 공간에 상태 토큰을 저장
-			request.getSession().setAttribute("state", state);
-		}
-		return mav;
+	
+	/** 네이버 로그인시 필요한 토근생성*/
+	private String generateState()
+	{
+		SecureRandom random = new SecureRandom();
+		return new BigInteger(130, random).toString(32);
 	}
 	
-	
-	
 	@RequestMapping(value = "/main/main.do", method = RequestMethod.GET)
-	public ModelAndView userMainPage() {
+	public ModelAndView userMainPage(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView("/main/main");
+		String tokenStr= generateState();
+		request.getSession().setAttribute("token", tokenStr);
+		
 		logger.debug("userMainPage");
 		
 		return mav;
 	}
+	
+	
+	
+	
 }

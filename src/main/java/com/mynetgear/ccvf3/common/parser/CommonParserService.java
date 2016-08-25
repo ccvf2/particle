@@ -29,7 +29,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class CommonParserService implements CommonParserServiceImp{
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	private Document parseXML(InputStream stream) throws Exception{
+	public Document parseXML(InputStream stream) throws Exception{
 		DocumentBuilderFactory objDocumentBuilderFactory = null;
 		DocumentBuilder objDocumentBuilder = null;
 		Document doc = null;
@@ -110,12 +110,12 @@ public class CommonParserService implements CommonParserServiceImp{
 		Iterator<String> itKey=parseTag.iterator();
 		//document에서 item을 검색함.
 		for(int i=0; i<docNodes.getLength();i++){
-			HashMap<String, String> map = new HashMap<String, String>();
 			while (itKey.hasNext()) {
 				String kkey=itKey.next();
 				for(Node node = docNodes.item(i).getFirstChild(); node!=null; node=node.getNextSibling()){
 					if(StringUtils.equals(node.getNodeName(), kkey)){
 						try {
+							HashMap<String, String> map = new HashMap<String, String>();
 							map.put(MapKeyCode .KEY_CODE_INDEX, i+"");
 							map.put(kkey, node.getTextContent());
 							list.add(map);
@@ -180,5 +180,46 @@ public class CommonParserService implements CommonParserServiceImp{
 		 * *//*
 	}
 	*/
+	
+	
+	
+	
+	/**@date 2016.08.25
+	 * @author 배성욱
+	 * @deprecated XML Document
+	 * @param requestURL
+	 * @return List<HashMap<String, String>>
+	 * @see List<HashMap<String, String>> 파싱된 내용이 담겨있는 맵 목록, 해쉬맵<XMLTag, XMLContents>
+	 */
+	@Override
+	public HashMap<String, String> userInfoXMLParse(Document doc, String parentTag, Set<String> parseTag) {
+		//return랑 List객체를 생성함
+		//List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		
+		NodeList docNodes = doc.getElementsByTagName(parentTag);
+		Iterator<String> itKey=parseTag.iterator();
+		//document에서 item을 검색함.
+		HashMap<String, String> map = new HashMap<String, String>();
+		for(int i=0; i<docNodes.getLength();i++){
+			while (itKey.hasNext()) {
+				String kkey=itKey.next();
+				for(Node node = docNodes.item(i).getFirstChild(); node!=null; node=node.getNextSibling()){
+					if(StringUtils.equals(node.getNodeName(), kkey)){
+						try {
+							map.put(MapKeyCode .KEY_CODE_INDEX, i+"");
+							map.put(kkey, node.getTextContent());
+							//list.add(map);
+						} catch (Exception e) {
+							logger.debug(Constant.LOG_ID1+"내용을 찾을 수 없습니다.");
+						}
+					}
+				}
+			}
+			//item에서 첫번째 자식을 시작으로 마지막까지 다음 형제를 실행
+		}
+		
+		return map;
+	}
+	
 	
 }
