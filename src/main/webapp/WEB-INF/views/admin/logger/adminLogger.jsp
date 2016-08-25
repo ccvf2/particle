@@ -36,15 +36,48 @@
 		<!--=== Content Side Left Right ===-->
 		<div class="content-side-right">
 			<div class="container content-sm">
+				<!-- 로그 입력 폼 -->
+				<div class="row top-buffer">
+					<div class="panel panel-green">
+						<div class="panel-heading">
+							<h3 class="panel-title"><i class="fa fa-tasks"></i>Insert Log</h3>
+						</div>
+						<div class="panel-body">
+							<form:form method="POST" commandName="adminLogger" id="adminLoggerForm">
+								<div class="row">
+									<div class="col-md-4">
+										<label for="adminlog_cat">로그종류</label>
+										<form:select path="adminlog_cat" id="adminlog_cat" cssClass="form-control">
+											<c:forEach items="${loggerCategoryList}" var="loggerCategory">
+												<form:option value="${loggerCategory.code}">${loggerCategory.code_name}</form:option>
+											</c:forEach> -->
+										</form:select>
+									</div>
+									<div class="col-md-8">
+										<label for="adminlog_title">로그제목</label>
+										<form:input path="adminlog_title" id="adminlog_title" maxlenth="255" cssClass="form-control" placeholder="로그제목"/>
+									</div>
+								</div>
+								<label for="adminlog_contents">로그내용</label>
+								<form:input path="adminlog_contents" id="adminlog_contents" maxlength="255" cssClass="form-control" placeholder="로그내용"/>
+								<label for="adminlog_error">에러내용</label>
+								<form:textarea path="adminlog_error" id="adminlog_error" cssClass="form-control" placeholder="에러내용"/>
+								<input type="submit" class="btn btn-primary" value="입력">
+							</form:form>
+						</div>
+					</div>
+				</div>
+				<!-- 로그 삭제 버튼 -->
 				<div class="row">
 					<button class="btn btn-danger" type="button" onclick="deleteLogs()">Delete All Logs</button>
 				</div>
+				<!-- 로그 리스트 -->
 				<div class="row top-buffer">
 					<div class="panel panel-yellow">
 						<div class="panel-heading">
 							<h3 class="panel-title"><i class="fa fa-tasks"></i>Log</h3>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body" id="adminlogList-Body" style="overflow: scroll; height: 500px;">
 							<c:forEach items="${adminLoggerList}" var="adminLogger">
 								<p>
 									<fmt:formatDate value="${adminLogger.adminlog_time}" type="both" dateStyle="medium"/> : 
@@ -55,9 +88,10 @@
 								</p>
 							</c:forEach>
 						</div>
+						<!-- 
 						<c:forEach items="${loggerCategoryList}" var="loggerCategory">
 							${loggerCategory.code}
-						</c:forEach>
+						</c:forEach> -->
 					</div>
 				</div>
 			</div><!-- container content-sm -->
@@ -87,6 +121,9 @@
 			ProgressBar.initProgressBarHorizontal();
 		});
 		
+		function insertAdminLoggerFormSubmit() {
+			
+		}
 		function deleteLogs() {
 			$.ajax({
 				url: "/admin/loggerDelete.ajax",
@@ -100,7 +137,7 @@
 		}
 		
 		function deleteLogsSuccess() {
-			$( ".panel-body" ).empty();
+			$("#adminlogList-Body").empty();
 		}
 	</script>
 </body>

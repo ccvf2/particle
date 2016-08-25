@@ -24,11 +24,11 @@ public class AdminLoggerService implements AdminLoggerServiceImp{
 	private AdminLoggerDAO adminLoggerDAO;
 	
 	@Override
-	public void insertAdminLogger(AdminLoggerDTO adminLoggerDTO) {
+	public int insertAdminLogger(AdminLoggerDTO adminLoggerDTO) {
 		//String category = adminLoggerDTO.getAdminlog_cat();
 		logger.debug("insertAdminLogger Method start");
 		
-		adminLoggerDAO.insertAdminLogger(adminLoggerDTO);
+		return adminLoggerDAO.insertAdminLogger(adminLoggerDTO);
 	}
 
 	@Override

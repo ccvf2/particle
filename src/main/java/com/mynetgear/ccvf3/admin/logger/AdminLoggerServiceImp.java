@@ -11,8 +11,9 @@ public interface AdminLoggerServiceImp {
 	  * @작성자 : 곽성국
 	  * @Method 설명 :로그를 추가는 메소드
 	  * @param adminLoggerDTO
+	 * @return 
 	  */
-	public void insertAdminLogger(AdminLoggerDTO adminLoggerDTO);
+	public int insertAdminLogger(AdminLoggerDTO adminLoggerDTO);
 	
 	/**
 	  * @Method Name : getAdminLoggerList

@@ -35,6 +35,7 @@
 	<select id="get_Admin_Logger_list" resultType="com.mynetgear.ccvf3.admin.logger.AdminLoggerDTO">
 		SELECT *
 		FROM tbl_adminlog
+		ORDER BY adminlog_seq
 	</select>
 	<!-- 로그 업데이트 -->
 	

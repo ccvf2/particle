@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +38,9 @@ public class AdminLoggerController {
 		ModelAndView mav = new ModelAndView();
 		logger.debug("adminLoggerView Method Start");
 		
+		AdminLoggerDTO adminLoggerDTO = new AdminLoggerDTO();
 		mav.addObject("adminLoggerList", adminLoggerService.getAdminLoggerList());
+		mav.addObject("adminLogger", adminLoggerDTO);
 		//로그의 공통코드 그룹 명
 		mav.addObject("loggerCategoryList", codeService.getListCodeGroup("L0000"));
 		mav.setViewName("/admin/logger/adminLogger");
@@ -45,6 +48,22 @@ public class AdminLoggerController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/admin/logger.do", method = RequestMethod.POST)
+	public ModelAndView adminLoggerInsert(@ModelAttribute("adminLogger")AdminLoggerDTO adminLoggerDTO) {
+		ModelAndView mav = new ModelAndView();
+		logger.debug("adminLoggerInsert Method Start");
+		
+		int result = adminLoggerService.insertAdminLogger(adminLoggerDTO);
+		mav.addObject("result", result);
+		
+		mav.addObject("adminLoggerList", adminLoggerService.getAdminLoggerList());
+		mav.addObject("adminLogger", adminLoggerDTO);
+		//로그의 공통코드 그룹 명
+		mav.addObject("loggerCategoryList", codeService.getListCodeGroup("L0000"));
+		mav.setViewName("/admin/logger/adminLogger");
+		
+		return mav;
+	}
 	
 	@RequestMapping(value = "/admin/loggerDelete.ajax", method = RequestMethod.GET)
 	public ModelAndView adminLoggerDelete(HttpServletRequest request, HttpServletResponse response) {
