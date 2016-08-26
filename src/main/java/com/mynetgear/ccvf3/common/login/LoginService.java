@@ -5,25 +5,33 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.ModelAndView;
 import org.w3c.dom.Document;
 
 import com.mynetgear.ccvf3.common.parser.CommonParserService;
+import com.mynetgear.ccvf3.common.util.Constant;
 import com.mynetgear.ccvf3.common.util.MapKeyCode;
 @Component
 public class LoginService implements LoginServiceImp {
 
-@Autowired
-CommonParserService commonParserService;
-
+	@Autowired
+	CommonParserService commonParserService;
+	@Autowired
+	LoginDAO loginDAO;
+	
+	
 	@Override
 	public HashMap<String, String> requestAccessToken(HttpServletRequest request,HttpServletResponse response, String clientId, String clientSecret,String code,String state)throws Exception {
 		//String code = request.getAttribute("code").toString();
@@ -58,7 +66,7 @@ CommonParserService commonParserService;
 	}
 	
 	@Override
-	public HashMap<String, String> requestUserInfo(HttpServletRequest request, HttpServletResponse response,HashMap<String, String> tokenMap)throws Exception{
+	public MemberDTO requestUserInfo(HttpServletRequest request, HttpServletResponse response,HashMap<String, String> tokenMap)throws Exception{
 		/********************** 사용자 정보  요청 시작 */
 		// 요청 URL
 		String uerInfoUrl = "https://apis.naver.com/nidlogin/nid/getUserProfile.xml";
@@ -96,8 +104,48 @@ CommonParserService commonParserService;
 		
 		//Document객체,파싱할 부모Tag,파싱할Tag 셋 객체를 요청 하여 사용자 정보를 담은 MAP를 리턴받음.
 		userInfo=commonParserService.userInfoXMLParse(doc, "response", infoSet);
-
+		
+		//MAP로 받아온 내용을 DTO에 씀.
+		MemberDTO memDto  = new MemberDTO();
+		memDto.setMem_id(userInfo.get("email"));
+		memDto.setMem_name(userInfo.get("name"));
+		memDto.setMem_nickname(userInfo.get("nickname"));
+		memDto.setMem_info("C0001");
+		memDto.setMem_type("M0002");
 		conn.disconnect();
-		return userInfo;
+		return memDto;
+	}
+
+	@Override
+	public ModelAndView loginBusinessHandler(ModelAndView mav) {
+		Map<String, Object> map = mav.getModelMap();
+		HttpServletRequest request= (HttpServletRequest)map.get("request");
+		MemberDTO userInfo = (MemberDTO)map.get("userInfo");
+		MemberDTO dbSelectUserInfo = null;
+		//리턴값= 0:내용없음 1:모두동일
+		int returnResult = 0;
+
+		dbSelectUserInfo=loginDAO.userInfoCheck(userInfo);
+
+		if(dbSelectUserInfo==null){
+			//디비에 내용이 없으므로 새로 입력
+			loginDAO.insertUserInfo(userInfo);
+		}else{
+			//디비에 내용이 있으므로 그냥 업데이트
+			//loginDAO.updateUserInfo(dbSelectUserInfo);
+			userInfo.setMem_seq(dbSelectUserInfo.getMem_seq());
+			userInfo.setMem_type(dbSelectUserInfo.getMem_type());
+			userInfo.setMem_info(dbSelectUserInfo.getMem_info());
+			loginDAO.updateUserInfo(userInfo);
+		}
+		//사용자 정보를 다시조회해옴
+		dbSelectUserInfo=loginDAO.userInfoCheck(userInfo);
+		// 세션처리
+		HttpSession session = request.getSession();
+		session.setAttribute(Constant.SYNN_LOGIN_OBJECT, dbSelectUserInfo);
+		
+		mav.addObject("userInfo",dbSelectUserInfo);
+		mav.addObject("request",request);
+		return mav;
 	}
 }

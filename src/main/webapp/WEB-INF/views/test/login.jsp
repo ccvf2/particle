@@ -7,12 +7,11 @@
 <title>login page.</title>
 </head>
 <body>
-이메일:${userInfo.email} / 
-닉네임:${userInfo.nickname} / 
-age:${userInfo.age} / 
-name:${userInfo.name} / 
-birthday:${userInfo.birthday} / 
-profile_image:${userInfo.profile_image}<br />
+이메일:${userInfo.mem_id} / 
+닉네임:${userInfo.mem_nickname} / 
+name:${userInfo.mem_name} / 
+mem_type:${userInfo.mem_type} / 
+mem_info:${userInfo.mem_info}<br />
 </body>
 
 </html>

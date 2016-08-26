@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mynetgear.ccvf3.common.login.LoginMapper">
+
+	<select id="user_info_db_check" resultType="com.mynetgear.ccvf3.common.login.MemberDTO" parameterType="com.mynetgear.ccvf3.common.login.MemberDTO">
+		SELECT
+			MEM_SEQ
+			,MEM_NAME
+			,MEM_NICKNAME
+			,MEM_ID
+			,MEM_INFO
+			,MEM_TYPE
+			,MEM_LAST_LOGIN
+		FROM
+			TBL_MEM
+		WHERE
+			MEM_ID=#{mem_id}
+		AND
+			MEM_INFO=#{mem_info}
+	</select>
+	
+	<insert id="user_info_new_insert" parameterType="com.mynetgear.ccvf3.common.login.MemberDTO">
+		INSERT INTO
+			TBL_MEM 
+		VALUES(
+				seq_mem.nextval
+				, #{mem_name}
+				, #{mem_nickname}
+				, #{mem_id}
+				, #{mem_info}
+				, #{mem_type}
+				, SYSDATE
+				) 
+	</insert>
+	
+	<update id="user_info_update" parameterType="com.mynetgear.ccvf3.common.login.MemberDTO">
+		UPDATE 
+			TBL_MEM
+		SET 
+			MEM_NAME=#{mem_name}
+			,MEM_NICKNAME=#{mem_nickname}
+			,MEM_LAST_LOGIN=SYSDATE
+		WHERE 
+			MEM_SEQ=#{mem_seq}
+	</update>
+	
+</mapper>

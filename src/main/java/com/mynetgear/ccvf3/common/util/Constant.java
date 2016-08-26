@@ -66,4 +66,9 @@ public class Constant {
 	public static final String CALLBACK_URL = "callback_url";
 	/**이동할페이지: 로그인전 시도했던 페이지로 이동 시 파라메터*/
 	public static final String CALLBACK_PARAM = "callback_param";
+	
+	
+	
+	/** 세션에 담겨 있는 로그인정보 : OBJECT */
+	public static final String SYNN_LOGIN_OBJECT = "mem_object";
 }

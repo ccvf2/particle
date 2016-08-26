@@ -49,16 +49,21 @@ public class LoginController {
 	
 	//받아온 토큰으로 사용저 정보를 네이버API로 요청
 	@RequestMapping(value = "/login/accesstoken.do")
-	public ModelAndView accessToken(HttpServletRequest servletRequest, HttpServletResponse servletResponse,@RequestParam String state, @RequestParam String code)throws Exception {
+	public ModelAndView accessToken(HttpServletRequest request, HttpServletResponse response,@RequestParam String state, @RequestParam String code)throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, String> tokenMap = new HashMap<String, String>();
 		//로그인에 필요한 토큰을 받아옴
-		tokenMap=loginService.requestAccessToken(servletRequest,servletResponse,clientId,clientSecret,code,state);
+		tokenMap=loginService.requestAccessToken(request,response,clientId,clientSecret,code,state);
 		
-		//받아온토큰 값으로 사용자 정보를 받아옴.
-		HashMap<String, String> userInfo = loginService.requestUserInfo(servletRequest,servletResponse,tokenMap);
+		//받아온토큰 값으로 사용자 정보를 받아옴.(네이버에서 받아온 user정보)
+		MemberDTO userInfo = loginService.requestUserInfo(request,response,tokenMap);
 		
+		mav.addObject("request",request);
 		mav.addObject("userInfo",userInfo);
+		
+		mav=loginService.loginBusinessHandler(mav);
+	
+		
 		mav.setViewName("/test/login");
 		return mav;
 	}
